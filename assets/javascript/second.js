@@ -26,7 +26,6 @@ function createView(snapshot) {
   myFavoriteImg.attr("src", placeholder)
 
   addFavoriteBtn = $("<button class='border-0' id='add-to-favorites'>")
-
   addFavoriteBtn.text("Add to Favorites")
 
   addFavorite = $('<small class="d-block float-right">')
