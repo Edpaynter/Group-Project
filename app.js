@@ -1,83 +1,127 @@
-let search = $("#user-input").val();
+//Global Varibles
+var newsArray = [];
 
-let newsArray = [];
-// NEWS API AJAX
-var queryURL = "https://newsapi.org/v2/everything?q=technology&apiKey=1529cadd622c471fb9b3bf964c426cf8"
-$.ajax({
-    url: queryURL,
-    method: "GET"
-}).then(function (response) {
-    // console.log(queryURL);
-    // console.log(response);
-    let results = response.articles;
-    console.log(results);
-    newsArray.push(results);
+//NYT API Search Function
+function NYTSearch(searchterm) {
+    //construct query URL for our search term for New York Times
+    var NYTqueryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + searchterm + "&api-key=o11Pk6ZG5HRAkFACfAm8ABPMR3iZ0rGI";
+    //AJAX Call
+    $.ajax({
+        url: NYTqueryURL,
+        method: "GET"
+    }).then(function (NYTresponse) {
+        console.log("NYT query URL: " + NYTqueryURL);
+        console.log("NYT response object: " + NYTresponse);
+        let NYTresults = NYTresponse.response.docs;
+        for (i = 0; i < NYTresults.length; i++) {
+            let NYTarticleTitle = NYTresults[i].headline.main;
+            let NYTarticle = NYTresults[i].lead_paragraph;
+            let NYTurl = NYTresults[i].web_url;
 
-    for(i=0; i < results.length; i++){
-        // let articleDiv = $("
+            let image = '';
+            if (NYTresults[i].multimedia.length > 0) {
+                image = NYTresults[i].multimedia[2].url;
+            }
 
-        // function articleMkr2(){
-        // let articleDes = $("<p>").text(results[i].description);
-        //     articleDes.addClass("articleDes");
-        // let articleImg = $("<img>");
-        //     articleImg.attr("src", results[i].urlToImage)
-        //     articleImg.addClass("articleImg");
-        //     articleImg.attr("data-url", results[i].url)
-        // let articleTitle = $("<h2>").text(results[i].title)
-        //     articleTitle.addClass("articleTitle");
-        let newsArticle = {
-            title: results[i].title,
-            image: results[i].urlToImage,
-            description: results[i].description,
-            url: results[i].url
+            let newsArticle = {
+                title: NYTarticleTitle,
+                image: image,
+                description: NYTarticle,
+                url: NYTurl,
+            }
+            newsArray.push(newsArticle);
         }
-        newsArray.push(newsArticle);
-        
-    }});
+        WSJsearch(searchterm);
+    });
+}; //END of NYT API Search Function
 
+//WSJ API Search Function
+function WSJsearch(searchterm) {
+    //NEWS API AJAX
+    var WSJqueryURL = "https://newsapi.org/v2/everything?q=" + searchterm + "&apiKey=1529cadd622c471fb9b3bf964c426cf8";
+    //AJAX Call
+    $.ajax({
+        url: WSJqueryURL,
+        method: "GET"
+    }).then(function (WSJresponse) {
+        console.log("WSJ Query Url: " + WSJqueryURL);
+        console.log(WSJresponse);
+        let WSJresults = WSJresponse.articles;
+        console.log("WSJ response object" + WSJresults);
+        for (i = 0; i < WSJresults.length; i++) {
+            //create newsarticle format for news array
+            let WSJarticleTitle = WSJresults[i].title;
+            let WSJarticleImg = WSJresults[i].urlToImage;
+            let WSJarticle = WSJresults[i].description;
+            let WSJurl = WSJresults[i].url
 
-        // article.append(articleDes, articleImg, articleTitle);
+            let newsArticle = {
+                title: WSJarticleTitle,
+                image: WSJarticleImg,
+                description: WSJarticle,
+                url: WSJurl,
+            }
+            newsArray.push(newsArticle);
+        }
+        console.log(newsArray);
+        const shuffledArray = shuffle(newsArray);
+        console.log(shuffledArray);
+    });
+};//END of WSJ API Search Function
 
-            // articleDiv.append(articleImg, articleTitle, articleDes)
-            // $("#display").append(articleDiv);
+//Seachbar Function + populate newsArray
+$("#submitButton").on("click", function () {
+    //NYT+WSJ AJAX calls
+    let userSearchterm = $("#user-input").val();
+    NYTSearch(userSearchterm);
+    //Call function that empties the newsArray, then populates the array using the the new search terms
+    $("#newsArray").empty();
+    //populate articles array
+    let searchbarResults = newsArray.push(NYTarticleDiv, WSJarticleDiv);
+    //push new articles array to html
+    $("#display").append(searchbarResults);
+})
+//END of Searchbar Function
 
-
-            // $(".articleImg").on("click",function(){
-            //     window.open("data-url");
-            // })
-        // append to page
-
-    // });
-var queryURL2 = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=technology&api-key=o11Pk6ZG5HRAkFACfAm8ABPMR3iZ0rGI"
-$.ajax({
-    url: queryURL2,
-    method: "GET"
-}).then(function (response2) {
-    // console.log(queryURL2);
-    // console.log(response2);
-    let results2 = response2.response.docs;
-    newsArray.push(results2);
+//Document "on-click" function for articles
+$(document).on("click", ".NYTarticlesDes", ".WSJarticleDes", function () {
+    //open new tab function
 
 });
-console.log(newsArray);
-//     for (i = 0; i < results2.length; i++) {
-    // function articleMkr(article){
-//         let artcicleDiv2 = $("<div>")
-//         let articleDes2 = $("<p>").text(results2[i].lead_paragraph);
-//         articleDes2.addClass("articleDes");
-//         let articleImg2 = $("<img>");
-//         articleImg2.attr("src", "https://www.nytimes.com/" + results2[i].multimedia[2].url)
-//         articleImg2.addClass("articleImg");
-//         articleImg2.attr("data-url", results2[i].web_url);
-//         let articleTitle2 = $("<h2>").text(results2[i].headline.main)
-//         articleTitle2.addClass("articleTitle");
-    // }
 
-//         artcicleDiv2.append(articleImg2, articleTitle2, articleDes2,);
-//         $("#display").append(artcicleDiv2);
+//Document load function
+
+NYTSearch("technology");
+
+var shuffle = function (newsArray) {
+
+    var currentIndex = newsArray.length;
+    var temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+
+        // And swap it with the current element.
+        temporaryValue = newsArray[currentIndex];
+        newsArray[currentIndex] = newsArray[randomIndex];
+        newsArray[randomIndex] = temporaryValue;
+    }
+
+    return newsArray;
+
+};
+
+// function articleShuffle(newsArray) {
+//     var a, b, i;
+//     for (i = newsArray.length - 1; i > 0; i--) {
+//         a = Math.floor(Math.random() * (i + 1));
+//         b = newsArray[i];
+//         newsArray[i] = newsArray[a];
+//         newsArray[a] = b;
 //     }
-// });
-
-// $("#sumbit").on("click", function(){
-//     
-// })
+//     return newsArray;
+// }
+console.log(newsArray);
