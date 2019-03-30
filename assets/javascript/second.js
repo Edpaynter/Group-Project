@@ -25,7 +25,8 @@ function createView(snapshot) {
   myFavoriteImg.attr("id", "image")
   myFavoriteImg.attr("src", placeholder)
 
-  addFavoriteBtn = $("<button class='border-0' id='add-to-favorites'>")
+  addFavoriteBtn = $("<button class='border-0'>")
+  addFavoriteBtn.attr("id", "add-to-favorites")
   addFavoriteBtn.text("Add to Favorites")
 
   addFavorite = $('<small class="d-block float-right">')
@@ -57,6 +58,7 @@ function createView(snapshot) {
   myFavorite.append(favoriteDivTitle)
   myFavorite.append(favoriteDivPTag)
 
+
 }
 
 $('#add-to-favorites').on("click", function () {
@@ -73,11 +75,13 @@ $('#add-to-favorites').on("click", function () {
     date: addDate,
   }
   database.ref().push(newEntry)
+  
+  $("#favorites-content").append(myFavorite)
 })
 
 
 database.ref().on("child_added", function (snapshot) {
   createView(snapshot)
-  $("#favorites-content").append(myFavorite)
+  
 
 });
