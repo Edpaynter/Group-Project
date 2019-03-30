@@ -13,20 +13,24 @@ database = firebase.database()
 placeholder = "https://www.gaskinsbennett.com/wp-content/uploads/2017/06/placeholder-500x500.jpg"
 
 function createView(snapshot) {
+  console.log("hello")
 
-  let favLink = snapshot.val().link
+  let favImg = snapshot.val().img
   let favTitle = snapshot.val().title
-  let favDate = snapshot.val().date
+  let favUrl = snapshot.val().url
+  console.log(favImg)
+  console.log(favTitle)
+  console.log(favUrl)
 
-  myFavoriteAtag = $("<a>")
-  myFavoriteAtag
+  var myFavoriteAtag = $("<a>")
+  myFavoriteAtag.append(myFavorite)
 
   myFavoriteImg = $("<img>")
   myFavoriteImg.addClass("mr-2 rounded rounded-circle")
   myFavoriteImg.attr("width", "200")
   myFavoriteImg.attr("height", "200")
   myFavoriteImg.attr("id", "image")
-  myFavoriteImg.attr("src", placeholder)
+  myFavoriteImg.attr("src", favImg)
 
   addFavoriteBtn = $("<button class='border-0'>")
   addFavoriteBtn.attr("id", "add-to-favorites")
@@ -37,7 +41,7 @@ function createView(snapshot) {
 
   favoriteDivStrong = $("<strong id='api-object-date'>")
   favoriteDivStrong.addClass("d-block text-dark")
-  favoriteDivStrong.text("Added on " + favTitle)
+  favoriteDivStrong.text(favTitle)
 
   favoriteDivTitle = $("<div>")
   favoriteDivTitle.attr("id", "api-object-title")
@@ -46,7 +50,7 @@ function createView(snapshot) {
   favoriteDivTitle.attr("height", "100%")
   favoriteDivTitle.attr("fill", "#007bff")
   favoriteDivTitle.attr("name", "Article Title")
-  favoriteDivTitle.text(favDate)
+  favoriteDivTitle.text(favUrl)
 
   favoriteDivPTag = $("<p style=color:black>")
   favoriteDivPTag.attr("id", "api-object-description") 
@@ -61,29 +65,32 @@ function createView(snapshot) {
   myFavorite.append(favoriteDivTitle)
   myFavorite.append(favoriteDivPTag)
 
-
+  
+  $("#favorites-content").append(myFavoriteAtag)
 }
 
 $(document).on("click", '#add-to-favorites', function () {
-  let addLink = $("#image").attr("src")
-  let addTitle = $("#article-name").attr("name")
-  let addDate = $("#date").attr("date")
+  let addImg = $(this).parents("#api-object").find("img").attr("src")
+  let addTitle = $(this).parents("#api-object").find("div").attr("name")
+  let addUrl = $(this).parents("#api-object").find("div").attr("url")
+  console.log(addImg)
   console.log(addTitle)
-  console.log(addLink)
-  console.log(addDate)
+  console.log(addUrl)
+  
 
   newEntry = {
     title: addTitle,
-    link: addLink,
-    date: addDate,
+    img: addImg,
+    url: addUrl,
   }
   database.ref().push(newEntry)
 
-  $("#favorites-content").append(myFavorite)
+  
 })
 
 
 database.ref().on("child_added", function (snapshot) {
+  
   createView(snapshot)
   
 

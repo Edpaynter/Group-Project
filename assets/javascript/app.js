@@ -9,11 +9,7 @@ function createViewHere(title, url, img, desc) {
     let favTitle = title
     let newDesc = desc
     
-    // myFavoriteAtag = $("<a>")
-    // myFavoriteAtag.attr("id", "url")
-    // myFavoriteAtag.attr("href", url)
-    // myFavoriteAtag.attr("target", "_blank")
-    // myFavoriteAtag.append(myFavorite)
+    
   
     myFavoriteImg = $("<img>")
     myFavoriteImg.addClass("mr-2 rounded rounded-circle")
@@ -38,7 +34,8 @@ function createViewHere(title, url, img, desc) {
     favoriteDivTitle.attr("width", "100%")
     favoriteDivTitle.attr("height", "100%")
     favoriteDivTitle.attr("fill", "#007bff")
-    favoriteDivTitle.attr("name", "Article Title")
+    favoriteDivTitle.attr("name", title)
+    favoriteDivTitle.attr("url", url)
     favoriteDivTitle.append(favTitle)
   
     favoriteDivPTag = $("<p style=color:black>")
@@ -54,7 +51,11 @@ function createViewHere(title, url, img, desc) {
     myFavorite.append(favoriteDivTitle)
     myFavorite.append(favoriteDivPTag)
     
-    $("#recent-updates-content").append(myFavorite)
+    myFavoriteAtag = $("<a>")
+    myFavoriteAtag.attr("target", "_blank")
+    myFavoriteAtag.append(myFavorite)
+
+    $("#recent-updates-content").append(myFavoriteAtag)
   }
 
 
