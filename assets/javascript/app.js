@@ -1,6 +1,60 @@
 //Global Varibles
 var newsArray = [];
 
+
+
+function createViewHere(title, url, img) {
+
+    let favImg = img
+    let favTitle = title
+    let favUrl = url
+    
+  
+    myFavoriteImg = $("<img>")
+    myFavoriteImg.addClass("mr-2 rounded rounded-circle")
+    myFavoriteImg.attr("width", "200")
+    myFavoriteImg.attr("height", "200")
+    myFavoriteImg.attr("id", "image")
+    myFavoriteImg.attr("src", favImg)
+  
+    addFavoriteBtn = $("<button class='border-0' id='add-to-favorites'>")
+    addFavoriteBtn.text("Add to Favorites")
+  
+    addFavorite = $('<small class="d-block float-right">')
+    addFavorite.append(addFavoriteBtn)
+  
+    favoriteDivStrong = $("<strong id='api-object-date'>")
+    favoriteDivStrong.addClass("d-block text-dark")
+    favoriteDivStrong.text("Added on " + favTitle)
+  
+    favoriteDivTitle = $("<div>")
+    favoriteDivTitle.attr("id", "api-object-title")
+    favoriteDivTitle.addClass("pt-3")
+    favoriteDivTitle.attr("width", "100%")
+    favoriteDivTitle.attr("height", "100%")
+    favoriteDivTitle.attr("fill", "#007bff")
+    favoriteDivTitle.attr("name", "Article Title")
+    favoriteDivTitle.text(favUrl)
+  
+    favoriteDivPTag = $("<p style=color:black>")
+    favoriteDivPTag.attr("id", "api-object-description") 
+    favoriteDivPTag.addClass("media-body pb-3 mb-0 small lh-125 border-bottom border-gray")
+    favoriteDivPTag.append(favoriteDivStrong)
+    favoriteDivPTag.text("jalksdjf;lasjdf;lkasd;lfjasd;lkjf;lksdajlk;fjals;kdjf;lksadjkl;dslkjfa;dls")
+    favoriteDivPTag.append(addFavorite)
+  
+    myFavorite = $("<div class='text-muted pt-3'>")
+    myFavorite.attr("id", "api-object")
+    myFavorite.append(myFavoriteImg)
+    myFavorite.append(favoriteDivTitle)
+    myFavorite.append(favoriteDivPTag)
+    
+    $("#recent-updates-content").append(myFavorite)
+  }
+
+
+
+
 //NYT API Search Function
 function NYTSearch(searchterm) {
     //construct query URL for our search term for New York Times
@@ -17,8 +71,8 @@ function NYTSearch(searchterm) {
             let NYTarticleTitle = NYTresults[i].headline.main;
             let NYTarticle = NYTresults[i].lead_paragraph;
             let NYTurl = NYTresults[i].web_url;
-
             let image = '';
+
             if (NYTresults[i].multimedia.length > 0) {
                 image = NYTresults[i].multimedia[2].url;
             }
@@ -33,6 +87,7 @@ function NYTSearch(searchterm) {
         }
         WSJsearch(searchterm);
     });
+    
 }; //END of NYT API Search Function
 
 //WSJ API Search Function
@@ -66,11 +121,23 @@ function WSJsearch(searchterm) {
         console.log(newsArray);
         const shuffledArray = shuffle(newsArray);
         console.log(shuffledArray);
+        for(i=0; i < shuffledArray.length; i++){
+            console.log(shuffledArray[i])
+            console.log(shuffledArray[i].title);
+            console.log(shuffledArray[i].image);
+            console.log(shuffledArray[i].url);
+            createViewHere(shuffledArray[i].title, shuffledArray[i].image, shuffledArray[i].url)
+        }
     });
+    
+    
 };//END of WSJ API Search Function
 
+
+
 //Seachbar Function + populate newsArray
-$("#submitButton").on("click", function () {
+$("#submitButton").on("click", function (event) {
+    event.preventDefault()
     //NYT+WSJ AJAX calls
     let userSearchterm = $("#user-input").val();
     NYTSearch(userSearchterm);
@@ -89,9 +156,8 @@ $(document).on("click", ".NYTarticlesDes", ".WSJarticleDes", function () {
 
 });
 
-//Document load function
-
-NYTSearch("technology");
+// $(document).ready(function() {     NYTSearch("technology");     WSJsearch("technology"); });
+// NYTSearch("technology");
 
 var shuffle = function (newsArray) {
 
