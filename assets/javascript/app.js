@@ -3,11 +3,12 @@ var newsArray = [];
 
 
 
-function createViewHere(title, url, img) {
+function createViewHere(title, url, img, desc) {
+    
 
-    let favImg = img
     let favTitle = title
     let favUrl = url
+    let newDesc = desc
     
   
     myFavoriteImg = $("<img>")
@@ -15,7 +16,7 @@ function createViewHere(title, url, img) {
     myFavoriteImg.attr("width", "200")
     myFavoriteImg.attr("height", "200")
     myFavoriteImg.attr("id", "image")
-    myFavoriteImg.attr("src", favImg)
+    myFavoriteImg.attr("src", img)
   
     addFavoriteBtn = $("<button class='border-0' id='add-to-favorites'>")
     addFavoriteBtn.text("Add to Favorites")
@@ -25,22 +26,22 @@ function createViewHere(title, url, img) {
   
     favoriteDivStrong = $("<strong id='api-object-date'>")
     favoriteDivStrong.addClass("d-block text-dark")
-    favoriteDivStrong.text("Added on " + favTitle)
+    favoriteDivStrong.text("Added on " )
   
     favoriteDivTitle = $("<div>")
     favoriteDivTitle.attr("id", "api-object-title")
-    favoriteDivTitle.addClass("pt-3")
+    favoriteDivTitle.addClass("pt-3 ")
     favoriteDivTitle.attr("width", "100%")
     favoriteDivTitle.attr("height", "100%")
     favoriteDivTitle.attr("fill", "#007bff")
     favoriteDivTitle.attr("name", "Article Title")
-    favoriteDivTitle.text(favUrl)
+    favoriteDivTitle.append(favTitle)
   
     favoriteDivPTag = $("<p style=color:black>")
     favoriteDivPTag.attr("id", "api-object-description") 
     favoriteDivPTag.addClass("media-body pb-3 mb-0 small lh-125 border-bottom border-gray")
     favoriteDivPTag.append(favoriteDivStrong)
-    favoriteDivPTag.text("jalksdjf;lasjdf;lkasd;lfjasd;lkjf;lksdajlk;fjals;kdjf;lksadjkl;dslkjfa;dls")
+    favoriteDivPTag.text(newDesc)
     favoriteDivPTag.append(addFavorite)
   
     myFavorite = $("<div class='text-muted pt-3'>")
@@ -73,8 +74,10 @@ function NYTSearch(searchterm) {
             let NYTurl = NYTresults[i].web_url;
             let image = '';
 
+
+
             if (NYTresults[i].multimedia.length > 0) {
-                image = NYTresults[i].multimedia[2].url;
+                image = "https://nytimes.com/" + NYTresults[i].multimedia[2].url;
             }
 
             let newsArticle = {
@@ -121,12 +124,14 @@ function WSJsearch(searchterm) {
         console.log(newsArray);
         const shuffledArray = shuffle(newsArray);
         console.log(shuffledArray);
+        $("#recent-updates-content").empty()
         for(i=0; i < shuffledArray.length; i++){
+            
             console.log(shuffledArray[i])
             console.log(shuffledArray[i].title);
             console.log(shuffledArray[i].image);
             console.log(shuffledArray[i].url);
-            createViewHere(shuffledArray[i].title, shuffledArray[i].image, shuffledArray[i].url)
+            createViewHere(shuffledArray[i].title, shuffledArray[i].url, shuffledArray[i].image,  shuffledArray[i].description)
         }
     });
     
@@ -138,11 +143,13 @@ function WSJsearch(searchterm) {
 //Seachbar Function + populate newsArray
 $("#submitButton").on("click", function (event) {
     event.preventDefault()
+    newsArray = []
     //NYT+WSJ AJAX calls
     let userSearchterm = $("#user-input").val();
     NYTSearch(userSearchterm);
     //Call function that empties the newsArray, then populates the array using the the new search terms
     $("#newsArray").empty();
+    newsArray.empty()
     //populate articles array
     let searchbarResults = newsArray.push(NYTarticleDiv, WSJarticleDiv);
     //push new articles array to html
