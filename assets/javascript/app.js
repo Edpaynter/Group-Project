@@ -7,9 +7,13 @@ function createViewHere(title, url, img, desc) {
     
 
     let favTitle = title
-    let favUrl = url
     let newDesc = desc
     
+    // myFavoriteAtag = $("<a>")
+    // myFavoriteAtag.attr("id", "url")
+    // myFavoriteAtag.attr("href", url)
+    // myFavoriteAtag.attr("target", "_blank")
+    // myFavoriteAtag.append(myFavorite)
   
     myFavoriteImg = $("<img>")
     myFavoriteImg.addClass("mr-2 rounded rounded-circle")
@@ -18,10 +22,10 @@ function createViewHere(title, url, img, desc) {
     myFavoriteImg.attr("id", "image")
     myFavoriteImg.attr("src", img)
   
-    addFavoriteBtn = $("<button class='border-0' id='add-to-favorites'>")
+    addFavoriteBtn = $("<button class='border-0 pb-3' id='add-to-favorites'>")
     addFavoriteBtn.text("Add to Favorites")
   
-    addFavorite = $('<small class="d-block float-right">')
+    addFavorite = $('<small class="d-block float-right pb-3">')
     addFavorite.append(addFavoriteBtn)
   
     favoriteDivStrong = $("<strong id='api-object-date'>")
@@ -29,7 +33,7 @@ function createViewHere(title, url, img, desc) {
     favoriteDivStrong.text("Added on " )
   
     favoriteDivTitle = $("<div>")
-    favoriteDivTitle.attr("id", "api-object-title")
+    favoriteDivTitle.attr("id", "article-name")
     favoriteDivTitle.addClass("pt-3 ")
     favoriteDivTitle.attr("width", "100%")
     favoriteDivTitle.attr("height", "100%")
@@ -44,7 +48,7 @@ function createViewHere(title, url, img, desc) {
     favoriteDivPTag.text(newDesc)
     favoriteDivPTag.append(addFavorite)
   
-    myFavorite = $("<div class='text-muted pt-3'>")
+    myFavorite = $("<div class='text-muted pt-3 pb-3'>")
     myFavorite.attr("id", "api-object")
     myFavorite.append(myFavoriteImg)
     myFavorite.append(favoriteDivTitle)
@@ -143,17 +147,20 @@ function WSJsearch(searchterm) {
 //Seachbar Function + populate newsArray
 $("#submitButton").on("click", function (event) {
     event.preventDefault()
+    
     newsArray = []
+    
     //NYT+WSJ AJAX calls
     let userSearchterm = $("#user-input").val();
+    $("#user-input").val("")
     NYTSearch(userSearchterm);
-    //Call function that empties the newsArray, then populates the array using the the new search terms
-    $("#newsArray").empty();
-    newsArray.empty()
+ 
     //populate articles array
     let searchbarResults = newsArray.push(NYTarticleDiv, WSJarticleDiv);
     //push new articles array to html
     $("#display").append(searchbarResults);
+    
+    
 })
 //END of Searchbar Function
 
@@ -186,15 +193,5 @@ var shuffle = function (newsArray) {
     return newsArray;
 
 };
-
-// function articleShuffle(newsArray) {
-//     var a, b, i;
-//     for (i = newsArray.length - 1; i > 0; i--) {
-//         a = Math.floor(Math.random() * (i + 1));
-//         b = newsArray[i];
-//         newsArray[i] = newsArray[a];
-//         newsArray[a] = b;
-//     }
-//     return newsArray;
-// }
+$( document ).ready(function() {     NYTSearch("javascript");     WSJsearch("javascript"); });
 console.log(newsArray);

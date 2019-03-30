@@ -18,6 +18,9 @@ function createView(snapshot) {
   let favTitle = snapshot.val().title
   let favDate = snapshot.val().date
 
+  myFavoriteAtag = $("<a>")
+  myFavoriteAtag
+
   myFavoriteImg = $("<img>")
   myFavoriteImg.addClass("mr-2 rounded rounded-circle")
   myFavoriteImg.attr("width", "200")
@@ -52,7 +55,7 @@ function createView(snapshot) {
   favoriteDivPTag.text("jalksdjf;lasjdf;lkasd;lfjasd;lkjf;lksdajlk;fjals;kdjf;lksadjkl;dslkjfa;dls")
   favoriteDivPTag.append(addFavorite)
 
-  myFavorite = $("<div class='text-muted pt-3'>")
+  myFavorite = $("<div class='text-muted pt-3 pb-3'>")
   myFavorite.attr("id", "api-object")
   myFavorite.append(myFavoriteImg)
   myFavorite.append(favoriteDivTitle)
@@ -61,7 +64,7 @@ function createView(snapshot) {
 
 }
 
-$('#add-to-favorites').on("click", function () {
+$(document).on("click", '#add-to-favorites', function () {
   let addLink = $("#image").attr("src")
   let addTitle = $("#article-name").attr("name")
   let addDate = $("#date").attr("date")
@@ -75,7 +78,7 @@ $('#add-to-favorites').on("click", function () {
     date: addDate,
   }
   database.ref().push(newEntry)
-  
+
   $("#favorites-content").append(myFavorite)
 })
 
