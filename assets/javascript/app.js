@@ -5,29 +5,16 @@ var newsArray = [];
 
 function createViewHere(title, url, img, desc) {
     
-
     let favTitle = title
     let newDesc = desc
     
-    
-  
     myFavoriteImg = $("<img>")
     myFavoriteImg.addClass("mr-2 rounded rounded-circle")
     myFavoriteImg.attr("width", "200")
     myFavoriteImg.attr("height", "200")
     myFavoriteImg.attr("id", "image")
     myFavoriteImg.attr("src", img)
-  
-    addFavoriteBtn = $("<button class='border-0 pb-3' id='add-to-favorites'>")
-    addFavoriteBtn.text("Add to Favorites")
-  
-    addFavorite = $('<small class="d-block float-right pb-3">')
-    addFavorite.append(addFavoriteBtn)
-  
-    favoriteDivStrong = $("<strong id='api-object-date'>")
-    favoriteDivStrong.addClass("d-block text-dark")
-    favoriteDivStrong.text("Added on " )
-  
+
     favoriteDivTitle = $("<div>")
     favoriteDivTitle.attr("id", "article-name")
     favoriteDivTitle.addClass("pt-3 ")
@@ -38,13 +25,24 @@ function createViewHere(title, url, img, desc) {
     favoriteDivTitle.attr("url", url)
     favoriteDivTitle.append(favTitle)
   
+    favoriteDivStrong = $("<strong id='api-object-date'>")
+    favoriteDivStrong.addClass("d-block text-dark")
+    
+
+    addFavoriteBtn = $("<button class='border-0' id='add-to-favorites'>")
+    addFavoriteBtn.text("Add to Favorites")
+  
+    addFavorite = $('<small class="d-block float-right pb-3">')
+    addFavorite.append(addFavoriteBtn)
+  
     favoriteDivPTag = $("<p style=color:black>")
     favoriteDivPTag.attr("id", "api-object-description") 
     favoriteDivPTag.addClass("media-body pb-3 mb-0 small lh-125 border-bottom border-gray")
     favoriteDivPTag.append(favoriteDivStrong)
     favoriteDivPTag.text(newDesc)
-    favoriteDivPTag.append(addFavorite)
-  
+    
+
+
     myFavorite = $("<div class='text-muted pt-3 pb-3'>")
     myFavorite.attr("id", "api-object")
     myFavorite.append(myFavoriteImg)
@@ -52,10 +50,18 @@ function createViewHere(title, url, img, desc) {
     myFavorite.append(favoriteDivPTag)
     
     myFavoriteAtag = $("<a>")
+    myFavoriteAtag.attr("href", url)
     myFavoriteAtag.attr("target", "_blank")
+    myFavoriteAtag.attr("id", "a-tag")
     myFavoriteAtag.append(myFavorite)
 
-    $("#recent-updates-content").append(myFavoriteAtag)
+    outerDiv = $("<div class='container content'>")
+    outerDiv.attr("id", "outer-div")
+    outerDiv.append(addFavorite, myFavoriteAtag )
+    
+
+
+    $("#recent-updates-content").append(outerDiv)
   }
 
 
@@ -70,8 +76,8 @@ function NYTSearch(searchterm) {
         url: NYTqueryURL,
         method: "GET"
     }).then(function (NYTresponse) {
-        console.log("NYT query URL: " + NYTqueryURL);
-        console.log("NYT response object: " + NYTresponse);
+        // console.log("NYT query URL: " + NYTqueryURL);
+        // console.log("NYT response object: " + NYTresponse);
         let NYTresults = NYTresponse.response.docs;
         for (i = 0; i < NYTresults.length; i++) {
             let NYTarticleTitle = NYTresults[i].headline.main;
@@ -107,10 +113,10 @@ function WSJsearch(searchterm) {
         url: WSJqueryURL,
         method: "GET"
     }).then(function (WSJresponse) {
-        console.log("WSJ Query Url: " + WSJqueryURL);
-        console.log(WSJresponse);
+        // console.log("WSJ Query Url: " + WSJqueryURL);
+        // console.log(WSJresponse);
         let WSJresults = WSJresponse.articles;
-        console.log("WSJ response object" + WSJresults);
+        // console.log("WSJ response object" + WSJresults);
         for (i = 0; i < WSJresults.length; i++) {
             //create newsarticle format for news array
             let WSJarticleTitle = WSJresults[i].title;
@@ -126,16 +132,16 @@ function WSJsearch(searchterm) {
             }
             newsArray.push(newsArticle);
         }
-        console.log(newsArray);
+    console.log(newsArray);
         const shuffledArray = shuffle(newsArray);
-        console.log(shuffledArray);
+        // console.log(shuffledArray);
         $("#recent-updates-content").empty()
-        for(i=0; i < shuffledArray.length; i++){
+        for(i=0; i < 15; i++){
             
-            console.log(shuffledArray[i])
-            console.log(shuffledArray[i].title);
-            console.log(shuffledArray[i].image);
-            console.log(shuffledArray[i].url);
+            // console.log(shuffledArray[i])
+            // console.log(shuffledArray[i].title);
+            // console.log(shuffledArray[i].image);
+            // console.log(shuffledArray[i].url);
             createViewHere(shuffledArray[i].title, shuffledArray[i].url, shuffledArray[i].image,  shuffledArray[i].description)
         }
     });
@@ -153,9 +159,9 @@ $("#submitButton").on("click", function (event) {
     
     //NYT+WSJ AJAX calls
     let userSearchterm = $("#user-input").val();
-    $("#user-input").val("")
+    
     NYTSearch(userSearchterm);
- 
+    $("#user-input").val("")
     //populate articles array
     let searchbarResults = newsArray.push(NYTarticleDiv, WSJarticleDiv);
     //push new articles array to html
@@ -165,14 +171,6 @@ $("#submitButton").on("click", function (event) {
 })
 //END of Searchbar Function
 
-//Document "on-click" function for articles
-$(document).on("click", ".NYTarticlesDes", ".WSJarticleDes", function () {
-    //open new tab function
-
-});
-
-// $(document).ready(function() {     NYTSearch("technology");     WSJsearch("technology"); });
-// NYTSearch("technology");
 
 var shuffle = function (newsArray) {
 
@@ -194,5 +192,5 @@ var shuffle = function (newsArray) {
     return newsArray;
 
 };
-$( document ).ready(function() {     NYTSearch("javascript");     WSJsearch("javascript"); });
+$( document ).ready(function() {     NYTSearch("tech trends");     WSJsearch("tech trends"); });
 console.log(newsArray);
