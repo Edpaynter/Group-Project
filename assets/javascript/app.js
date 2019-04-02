@@ -139,7 +139,7 @@ function WSJsearch(searchterm) {
         const shuffledArray = shuffle(newsArray);
         // console.log(shuffledArray);
         $("#recent-updates-content").empty()
-        for(i=0; i < 15; i++){
+        for(i=0; i < newsArray.length; i++){
             
             // console.log(shuffledArray[i])
             // console.log(shuffledArray[i].title);
