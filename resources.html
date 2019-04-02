@@ -9,62 +9,234 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <meta charset="utf-8">
+    <title>Group Project</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center jumbotron">
-                Resources
+<body class="resourcesBody">
+    <div class="container" id=>
+        <nav class="navbar navbar-expand-lg navbar-light navbar-color fixed-top">
+            <a class="navbar-brand" href="index.html" style="color: aliceblue">Ⓘ.Ⓝ.Ⓕ.Ⓞ.</a>
+            <button style="background-color: aliceblue" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span style="color: aliceblue" class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                
+                <li class="nav-item">
+                  <a class="nav-link" href="favorites.html" style="color: aliceblue">Favorites</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="resources.html" style="color: aliceblue">Resources</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about.html" style="color: aliceblue">About</a>
+                </li>
+              </ul>
+              <!-- <form class="form-inline my-2 my-lg-0">
+                <input id="user-input" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button id="submitButton" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form> -->
             </div>
+          </nav>
+      
+    </div>
+    <section class="hero rounded">
+        <div class="hero-inner">
+            <h1 class="header-text strong underLine">Resources Page &#128214;;</h2>
+                <span class="header-text strong resizedP">A compiled library of resources we have put together that will
+                    greatly benefit your coding ability. Did we mention they are 100% free?</span>
         </div>
+
+    </section>
+   
+    <main class="container">
         <div class="row">
-            <div class="col-md-12">
-                <p>
-                    <div class="text-center"> HTML </div>
-                    <ul>
-                        <li><a href="https://dash.generalassemb.ly/">General Assembly Dash</a></li>
-                        <li><a href="https://learn.skillcrush.com/skillcrush-free-bootcamp/">Skillcrush's Free Coding Bootcamp</a></li>
-                        <li><a href="https://developer.mozilla.org/en-US/">Mozilla Developer Network</a></li>
-                        <li><a href="https://www.htmldog.com/">HTML5 Dog</a></li>
-                    </ul>
-                </p>
+            <div class="col-md-12 text-center"> </div>
 
-                <p>
-                    <div class="text-center">JavaScript</div>
-                    <ul>
-                        <li><a href="https://teamtreehouse.com/library/topic:javascript?irgwc=1&click_id=wec3iCwdexyJRjJ0RHQK3XRkUkl2n10QeQevQU0&iradid=228915&ircid=3944&irpid=197389&iradname=Online%20Tracking%20Link&iradtype=ONLINE_TRACKING_LINK&iradsize=&irmpname=Learn%20to%20Code%20With%20Me&irmptype=mediapartner&utm_source=ir&cid=">Team Treehouse</a>
-                        </li>
-                        <li><a href="http://javascriptissexy.com/">Javascript is Sexy</a></li>
-                        <li><a href="http://eloquentjavascript.net/">Eloquent Javascript</a></li>
-                        <li><a href="http://www.learn-js.org/">Learn JS</a></li>
-                        <li><a href="http://www.thatjsdude.com/">That JS Dude</a></li>
-                    </ul>
-                </p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-deck rounded">
+                            <div class="card bg-light mb-3 rounded cardBorder">
 
-                <p>
-                    <div class="text-center"> Python</div>
-                    <ul>
-                        <li><a href="https://python.swaroopch.com/">A Byte of Python</a></li>
-                        <li><a href="http://www.learnpython.org/">Learnpython.org</a></li>
-                        <li><a href="https://learnpythonthehardway.org/book/">Learn Python The Hard Way</a></li>
-                        <li><a href=" https://pythonspot.com/">Python Spot</a></li>
+                              
+                                <div class="card-body">
 
-                    </ul>
-                </p>
+                                    <h5 class="card-title card-header">HTML</h5>
 
-                <p>
-                    <div class="text-center">Ruby</div>
-                    <ul>
-                        <li> <a href="https://learnrubythehardway.org/">Learn Ruby The Hard Way</a> </li>
-                        <li><a href="https://www.pluralsight.com/courses/code-school-rails-for-zombies">Rails For Zombies</a></li>
-                        <li><a href="https://rubymonk.com/">RubyMonk</a></li>
-                    </ul>
-                </p>
+                                    <span class="card-body" style="width: 18rem;">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><a
+                                                    href="https://teamtreehouse.com/library/topic:javascript?irgwc=1&click_id=wec3iCwdexyJRjJ0RHQK3XRkUkl2n10QeQevQU0&iradid=228915&ircid=3944&irpid=197389&iradname=Online%20Tracking%20Link&iradtype=ONLINE_TRACKING_LINK&iradsize=&irmpname=Learn%20to%20Code%20With%20Me&irmptype=mediapartner&utm_source=ir&cid=">Team
+                                                    Treehouse</a>
+                                            </li>
+                                            <li class="list-group-item"><a href="https://dash.generalassemb.ly/">General
+                                                    Assembly Dash</a></li>
+                                            <li class="list-group-item"><a
+                                                    href="https://learn.skillcrush.com/skillcrush-free-bootcamp/">Skillcrush's
+                                                    Free Coding Bootcamp</a></li>
+                                            <li class="list-group-item"><a
+                                                    href="https://developer.mozilla.org/en-US/">Mozilla Developer
+                                                    Network</a></li>
+                                            <li class="list-group-item"><a href="https://www.htmldog.com/">HTML5 Dog</a>
+                                            </li>
+                                        </ul>
+                                        </p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card bg-light mb-3 rounded cardBorder">
+                                
+                                <div class="card-body" > 
+                                    <h5 class="card-title card-header">Javascript</h5>
 
+                                    <span class="card-body">
+
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><a
+                                                    href="https://teamtreehouse.com/library/topic:javascript?irgwc=1&click_id=wec3iCwdexyJRjJ0RHQK3XRkUkl2n10QeQevQU0&iradid=228915&ircid=3944&irpid=197389&iradname=Online%20Tracking%20Link&iradtype=ONLINE_TRACKING_LINK&iradsize=&irmpname=Learn%20to%20Code%20With%20Me&irmptype=mediapartner&utm_source=ir&cid=">Team
+                                                    Treehouse</a>
+                                            </li>
+                                            <li class="list-group-item"><a
+                                                    href="http://javascriptissexy.com/">Javascript is Sexy</a></li>
+                                            <li class="list-group-item"><a
+                                                    href="http://eloquentjavascript.net/">Eloquent Javascript</a></li>
+                                            <li class="list-group-item"><a href="http://www.learn-js.org/">Learn JS</a>
+                                            </li>
+                                            <li class="list-group-item"><a href="http://www.thatjsdude.com/">That JS
+                                                    Dude</a></li>
+                                        </ul>
+                                        </p>
+                                    </span>
+                                </div>
+
+                            </div>
+                            <div class="card bg-light mb-3 rounded cardBorder">
+                                
+                                <div class="card-body">
+                                    <h5 class="card-title card-header">Python</h5>
+
+                                    <span class="card-body" style="width: 18rem;">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><a href="https://python.swaroopch.com/">A Byte
+                                                    of Python</a></li>
+                                            <li class="list-group-item"><a
+                                                    href="http://www.learnpython.org/">Learnpython.org</a></li>
+                                            <li class="list-group-item"><a
+                                                    href="https://learnpythonthehardway.org/book/">Learn Python The Hard
+                                                    Way</a></li>
+                                            <li class="list-group-item"><a href=" https://pythonspot.com/">Python
+                                                    Spot</a></li>
+
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-deck rounded ">
+                        <div class="card bg-light mb-3 rounded cardBorder">
+                           
+                            <div class="card-body">
+                                <h5 class="card-title card-header">Ruby</h5>
+                                <div class="card-body">
+                                    <span class="card-body" style="width: 18rem;">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><a href="https://python.swaroopch.com/">A Byte
+                                                    of Python</a></li>
+                                            <li class="list-group-item"><a
+                                                    href="http://www.learnpython.org/">Learnpython.org</a></li>
+                                            <li class="list-group-item"><a
+                                                    href="https://learnpythonthehardway.org/book/">Learn Python The Hard
+                                                    Way</a></li>
+                                            <li class="list-group-item"><a href=" https://pythonspot.com/">Python
+                                                    Spot</a></li>
+
+                                        </ul>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card bg-light mb-3 rounded cardBorder">
+                           
+
+                            <div class="card-body">
+                                <h5 class="card-title card-header">Computer Science Fundamentals</h5>
+                                <div class="card-body">
+
+
+                                    <span class="card-body" style="width: 18rem;">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><a
+                                                    href="https://www.khanacademy.org/computing/computer-programming">Khan
+                                                    Academy: Computer Programming</a></li>
+                                            <li class="list-group-item"><a
+                                                    href="https://code.org/educate/curriculum/elementary-school">Comp
+                                                    Sci. K-5</a></li>
+                                            <li class="list-group-item"><a
+                                                    href="https://www.edx.org/course/cs50s-introduction-to-computer-science">Harvard's
+                                                    CS50 edX</a></li>
+                                            <li class="list-group-item"><a
+                                                    href="https://brilliant.org/courses/computer-science-fundamentals/">Intro
+                                                    to Comp Science</a></li>
+
+                                        </ul>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card bg-light mb-3 rounded cardBorder">
+                            
+                            <div class="card-body">
+                                <h5 class="card-title card-header">Coding Is Fun</h5>
+                                <span class="card-body" style="width: 18rem;">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><a
+                                                href="https://www.youtube.com/watch?v=FC5FbmsH4fw">Hour Of Code</a></li>
+                                        <li class="list-group-item"><a
+                                                href="https://skillcrush.com/2018/06/08/is-coding-boring/">Coding Is
+                                                Fun</a></li>
+                                        <li class="list-group-item"><a
+                                                href="https://edu.gcfglobal.org/en/computerbasics/understanding-operating-systems/1/">Understanding
+                                                Computers</a></li>
+                                        <li class="list-group-item"><a
+                                                href="https://www.newegg.com/Components/Store>Python Spot">Computer
+                                                Parts</a></li>
+
+                                    </ul>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <br>
+            <br>
+            <p>
+    </main>
+    </div>
+    </div>
 
     </div>
 </body>

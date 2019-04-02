@@ -5,6 +5,7 @@ var newsArray = [];
 
 function createViewHere(title, url, img, desc) {
     
+
     let favTitle = title
     let newDesc = desc
     
@@ -13,7 +14,9 @@ function createViewHere(title, url, img, desc) {
     myFavoriteImg.attr("width", "200")
     myFavoriteImg.attr("height", "200")
     myFavoriteImg.attr("id", "image")
+    myFavoriteImg.attr("onerror", "this.src='https://fallmeeting.agu.org/2014/files/2012/09/blue-swirl.jpg'")
     myFavoriteImg.attr("src", img)
+
 
     favoriteDivTitle = $("<div>")
     favoriteDivTitle.attr("id", "article-name")
