@@ -13,6 +13,7 @@ body {
     background-color: #cdcdcd;
     font-family: sans-serif;
     background-image: url(https://wallpaperstream.com/wallpapers/full/apple-logo/Blue-Dark-Background-and-Apple-Logo.jpg)
+
 }
 .hero {
     /* Sizing */
@@ -244,4 +245,8 @@ body {
 .center1 {
     width: 100%;
     background-image: url(https://wallpaperstream.com/wallpapers/full/apple-logo/Blue-Dark-Background-and-Apple-Logo.jpg)
+}
+
+.personText {
+    color: white;
 }
